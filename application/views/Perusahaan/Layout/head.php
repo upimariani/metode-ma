@@ -32,8 +32,7 @@
 				<div class="container">
 					<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 						<a class="navbar-brand brand-logo" href="index.html">
-							<img src="<?= base_url('asset/plus-admin/') ?>assets/images/logo.svg" alt="logo" />
-							<span class="font-12 d-block font-weight-light">Responsive Dashboard </span>
+							<img src="<?= base_url('asset/logo2.jpg') ?>" alt="logo" />
 						</a>
 						<a class="navbar-brand brand-logo-mini" href="index.html"><img src="<?= base_url('asset/plus-admin/') ?>assets/images/logo-mini.svg" alt="logo" /></a>
 					</div>

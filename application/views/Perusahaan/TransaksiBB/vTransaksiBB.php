@@ -58,6 +58,16 @@
 				</div>
 				<!-- /.modal-dialog -->
 			</div>
+			<?php
+			if ($this->session->userdata('success')) {
+			?>
+				<div class="alert alert-success">
+					<h5>Sukses!</h5>
+					<p><?= $this->session->userdata('success') ?></p>
+				</div>
+			<?php
+			}
+			?>
 			<div class="row">
 				<div class="col-lg-12 grid-margin stretch-card">
 					<div class="card">
@@ -89,11 +99,15 @@
 												<td><?php
 													if ($value->stat_order == '0') {
 													?>
+														<span class="badge badge-danger">Belum Melakukan Pembayaran</span>
+													<?php
+													} else if ($value->stat_order == '1') {
+													?>
 														<span class="badge badge-warning">Menunggu Konfirmasi</span>
 													<?php
-													} else {
+													} else if ($value->stat_order == '2') {
 													?>
-														<span class="badge badge-success">Selesai</span>
+														<span class="badge badge-success">Pesanan Selesai</span>
 													<?php
 													}
 													?>

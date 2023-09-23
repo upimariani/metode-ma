@@ -35,6 +35,10 @@ class cLogin extends CI_Controller
 					redirect('Perusahaan/cDashboard');
 				} else if ($auth->level_user == '2') {
 					redirect('Supplier/cDashboard');
+				} else if ($auth->level_user == '3') {
+					redirect('Produksi/cDashboard');
+				} else if ($auth->level_user == '4') {
+					redirect('Pemilik/cDashboard');
 				}
 			} else {
 				$this->session->set_flashdata('error', 'Username dan Password Salah!!!');

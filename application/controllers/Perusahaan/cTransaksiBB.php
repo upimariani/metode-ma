@@ -34,25 +34,39 @@ class cTransaksiBB extends CI_Controller
 	}
 	public function addtocart()
 	{
-		$data = array(
-			'id' => $this->input->post('bb'),
-			'name' => $this->input->post('nama'),
-			'price' => $this->input->post('harga'),
-			'qty' => $this->input->post('qty'),
-			'stok' => $this->input->post('stok')
-		);
-		$this->cart->insert($data);
-		$this->session->set_flashdata('success', 'Bahan Baku Berhasil Masuk Keranjang!');
+		$qty_tersedia = $this->input->post('stok');
+		$qty_beli = $this->input->post('qty');
+		if ($qty_beli > $qty_tersedia) {
+			$id_supplier = $this->input->post('id_supplier');
+			$this->session->set_flashdata('success', 'Quantity Yang diproses melebih kapasitas stok yang tersedia!');
+			$data = array(
+				'bb' => $this->mTransaksi->bahan_baku($id_supplier),
+				'id_supplier' => $id_supplier
+			);
+			$this->load->view('Perusahaan/Layout/head');
+			$this->load->view('Perusahaan/TransaksiBB/vCreateTransaksiBB', $data);
+			$this->load->view('Perusahaan/Layout/footer');
+		} else {
+			$data = array(
+				'id' => $this->input->post('bb'),
+				'name' => $this->input->post('nama'),
+				'price' => $this->input->post('harga'),
+				'qty' => $this->input->post('qty'),
+				'stok' => $this->input->post('stok')
+			);
+			$this->cart->insert($data);
+			$this->session->set_flashdata('success', 'Bahan Baku Berhasil Masuk Keranjang!');
 
 
-		$id_supplier = $this->input->post('id_supplier');
-		$data = array(
-			'bb' => $this->mTransaksi->bahan_baku($id_supplier),
-			'id_supplier' => $id_supplier
-		);
-		$this->load->view('Perusahaan/Layout/head');
-		$this->load->view('Perusahaan/TransaksiBB/vCreateTransaksiBB', $data);
-		$this->load->view('Perusahaan/Layout/footer');
+			$id_supplier = $this->input->post('id_supplier');
+			$data = array(
+				'bb' => $this->mTransaksi->bahan_baku($id_supplier),
+				'id_supplier' => $id_supplier
+			);
+			$this->load->view('Perusahaan/Layout/head');
+			$this->load->view('Perusahaan/TransaksiBB/vCreateTransaksiBB', $data);
+			$this->load->view('Perusahaan/Layout/footer');
+		}
 	}
 	public function hapus($id, $id_supplier)
 	{
@@ -70,7 +84,6 @@ class cTransaksiBB extends CI_Controller
 		$data = array(
 			'id_user' => $this->input->post('id_supplier'),
 			'tgl_tran' => date('Y-m-d'),
-			'periode' => date('m'),
 			'tot_bayar' => $this->cart->total(),
 			'stat_order' => '0'
 		);
@@ -82,7 +95,8 @@ class cTransaksiBB extends CI_Controller
 			$pesanan = array(
 				'id_tran_bb' => $id_po_bb->id_tran_bb,
 				'id_bb' => $value['id'],
-				'jml' => $value['qty']
+				'jml' => $value['qty'],
+				'sisa' => $value['qty']
 			);
 			$this->mTransaksi->insert_pesanan($pesanan);
 		}
@@ -98,6 +112,35 @@ class cTransaksiBB extends CI_Controller
 		$this->load->view('Perusahaan/Layout/head');
 		$this->load->view('Perusahaan/TransaksiBB/vDetailTransaksi', $data);
 		$this->load->view('Perusahaan/Layout/footer');
+	}
+	public function pembayaran($id)
+	{
+		$config['upload_path']          = './asset/bukti-pembayaran';
+		$config['allowed_types']        = 'gif|jpg|png|jpeg';
+		$config['max_size']             = 500000;
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('bayar')) {
+			$data = array(
+				'detail_transaksi' => $this->mTransaksi->detail($id),
+				'error' => $this->upload->display_errors()
+			);
+			$this->load->view('Perusahaan/Layout/head');
+			$this->load->view('Perusahaan/TransaksiBB/vDetailTransaksi', $data);
+			$this->load->view('Perusahaan/Layout/footer');
+		} else {
+			$upload_data = $this->upload->data();
+			$data = array(
+				'stat_order' => '1',
+				'bukti_payment' => $upload_data['file_name']
+			);
+			$this->db->where('id_tran_bb', $id);
+			$this->db->update('tran_bb', $data);
+
+
+			$this->session->set_flashdata('success', 'Pembayaran Berhasil Dikirim!');
+			redirect('Perusahaan/cTransaksiBB');
+		}
 	}
 }
 

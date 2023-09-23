@@ -32,7 +32,9 @@
 <script src="<?= base_url('asset/plus-admin/') ?>assets/js/misc.js"></script>
 <script src="<?= base_url('asset/plus-admin/') ?>assets/js/settings.js"></script>
 <script src="<?= base_url('asset/plus-admin/') ?>assets/js/todolist.js"></script>
-<script src="<?= base_url('asset/') ?>datatables.min.js"></script>
+<link href="<?= base_url('asset/') ?>DataTables/datatables.min.css" rel="stylesheet">
+
+<script src="<?= base_url('asset/') ?>DataTables/datatables.min.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page -->
 <script src="<?= base_url('asset/plus-admin/') ?>assets/js/dashboard.js"></script>

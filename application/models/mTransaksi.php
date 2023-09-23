@@ -8,6 +8,8 @@ class mTransaksi extends CI_Model
 		$this->db->select('*');
 		$this->db->from('tran_bb');
 		$this->db->join('user', 'tran_bb.id_user = user.id_user', 'left');
+		$this->db->order_by('tgl_tran', 'desc');
+
 		return $this->db->get()->result();
 	}
 	public function bahan_baku($id)
@@ -40,6 +42,7 @@ class mTransaksi extends CI_Model
 		$this->db->join('user', 'tran_bb.id_user = user.id_user', 'left');
 
 		$this->db->where('user.id_user', $this->session->userdata('id'));
+		$this->db->order_by('tgl_tran', 'desc');
 		return $this->db->get()->result();
 	}
 }

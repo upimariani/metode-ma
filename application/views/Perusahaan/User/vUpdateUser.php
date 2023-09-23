@@ -54,10 +54,16 @@
 										<option value="">---Pilih Level User---</option>
 										<option value="1" <?php if ($user->level_user == '1') {
 																echo 'selected';
-															} ?>>Perusahaan</option>
+															} ?>>Administrasi</option>
 										<option value="2" <?php if ($user->level_user == '2') {
 																echo 'selected';
 															} ?>>Supplier</option>
+										<option value="3" <?php if ($user->level_user == '3') {
+																echo 'selected';
+															} ?>>Produksi</option>
+										<option value="4" <?php if ($user->level_user == '4') {
+																echo 'selected';
+															} ?>>Pemilik</option>
 									</select>
 									<?= form_error('level', '<small class="text-danger">', '</small>') ?>
 								</div>

@@ -59,11 +59,15 @@
 												<td><?php
 													if ($value->stat_order == '0') {
 													?>
+														<span class="badge badge-danger">Belum Melakukan Pembayaran</span>
+													<?php
+													} else if ($value->stat_order == '1') {
+													?>
 														<span class="badge badge-warning">Menunggu Konfirmasi</span>
 													<?php
-													} else {
+													} else if ($value->stat_order == '2') {
 													?>
-														<span class="badge badge-success">Selesai</span>
+														<span class="badge badge-success">Pesanan Selesai</span>
 													<?php
 													}
 													?>

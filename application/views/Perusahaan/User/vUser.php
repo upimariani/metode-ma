@@ -37,7 +37,7 @@
 							<h4 class="card-title">Informasi User</h4>
 							</p>
 							<div class="table-responsive">
-								<table class="table table-striped">
+								<table id="myTable" class="table table-striped">
 									<thead>
 										<tr>
 											<th>User</th>
@@ -79,11 +79,19 @@
 												<td><?= $value->password ?></td>
 												<td><?php if ($value->level_user == '1') {
 													?>
-														<span class="badge badge-success">Perusahaan</span>
+														<span class="badge badge-success">Administrasi</span>
 													<?php
-													} else {
+													} else if ($value->level_user == '2') {
 													?>
 														<span class="badge badge-warning">Supplier</span>
+													<?php
+													} else if ($value->level_user == '3') {
+													?>
+														<span class="badge badge-info">Produksi</span>
+													<?php
+													} else if ($value->level_user == '4') {
+													?>
+														<span class="badge badge-danger">Pemilik</span>
 													<?php
 													} ?>
 												</td>

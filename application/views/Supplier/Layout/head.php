@@ -32,8 +32,7 @@
 				<div class="container">
 					<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 						<a class="navbar-brand brand-logo" href="index.html">
-							<img src="<?= base_url('asset/plus-admin/') ?>assets/images/logo.svg" alt="logo" />
-							<span class="font-12 d-block font-weight-light">Responsive Dashboard </span>
+							<img src="<?= base_url('asset/logo2.jpg') ?>" alt="logo" />
 						</a>
 						<a class="navbar-brand brand-logo-mini" href="index.html"><img src="<?= base_url('asset/plus-admin/') ?>assets/images/logo-mini.svg" alt="logo" /></a>
 					</div>
@@ -85,7 +84,10 @@
 						<li class="nav-item">
 							<a class="nav-link" href="<?= base_url('Supplier/cTransaksi') ?>">
 								<i class="mdi mdi-chart-bar menu-icon"></i>
-								<span class="menu-title">Transaksi Bahan Baku</span>
+								<?php
+								$notif = $this->db->query("SELECT COUNT(id_tran_bb) as notif FROM `tran_bb` WHERE stat_order='1'")->row();
+								?>
+								<span class="menu-title">Transaksi Bahan Baku <span class="badge badge-warning"><?= $notif->notif ?></span></span>
 							</a>
 						</li>
 					</ul>

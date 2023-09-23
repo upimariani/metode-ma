@@ -11,6 +11,16 @@
 					</ol>
 				</nav>
 			</div>
+			<?php
+			if ($this->session->userdata('success')) {
+			?>
+				<div class="alert alert-success">
+					<h5>Sukses!</h5>
+					<p><?= $this->session->userdata('success') ?></p>
+				</div>
+			<?php
+			}
+			?>
 			<div class="row">
 
 				<div class="col-12 grid-margin stretch-card">
@@ -52,8 +62,10 @@
 									<label for="exampleInputCity1">Level User</label>
 									<select name="level" class="form-control">
 										<option value="">---Pilih Level User---</option>
-										<option value="1">Perusahaan</option>
+										<option value="1">Administrasi</option>
 										<option value="2">Supplier</option>
+										<option value="3">Produksi</option>
+										<option value="4">Pemilik</option>
 									</select>
 									<?= form_error('level', '<small class="text-danger">', '</small>') ?>
 								</div>

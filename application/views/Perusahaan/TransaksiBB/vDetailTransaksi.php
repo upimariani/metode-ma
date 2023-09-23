@@ -91,10 +91,39 @@
 										}
 										?>
 									</tbody>
+									<tfoot>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td><strong>Total</strong></td>
+											<td>Rp. <?= number_format($detail_transaksi['transaksi']->tot_bayar) ?></td>
+										</tr>
+									</tfoot>
 								</table>
+
+
+
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-header">
+							<h2>Upload Bukti Pembayaran</h2>
+						</div>
+						<div class="card body">
+							<?php echo form_open_multipart('Perusahaan/cTransaksiBB/pembayaran/' . $detail_transaksi['transaksi']->id_tran_bb); ?>
+							<input type="file" class="form-control" name="bayar" required>
+							<button type="submit" class="btn btn-success">Upload</button>
+							</form>
+						</div>
+
+					</div>
+
 				</div>
 			</div>
 		</div>
