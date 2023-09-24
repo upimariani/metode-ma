@@ -37,7 +37,7 @@
 							<h4 class="card-title">Informasi Bahan Baku</h4>
 							</p>
 							<div class="table-responsive">
-								<table class="table table-striped">
+								<table id="myTable" class="table table-striped">
 									<thead>
 										<tr>
 											<th>No</th>

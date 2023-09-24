@@ -89,6 +89,16 @@ class cTransaksiBB extends CI_Controller
 		);
 		$this->mTransaksi->insert_po_bb($data);
 
+		//mengurangi bahan baku supplier
+		foreach ($this->cart->contents() as $key => $value) {
+			$stok_sebelumnya = $value['stok'];
+			$stok_beli = $value['qty'];
+			$stok_update = $stok_sebelumnya - $stok_beli;
+			$stok = array('stok' => $stok_update);
+			$this->db->where('id_bb', $value['id']);
+			$this->db->update('bahan_baku', $stok);
+		}
+
 		$id_po_bb = $this->db->query("SELECT MAX(id_tran_bb) as id_tran_bb FROM `tran_bb`")->row();
 
 		foreach ($this->cart->contents() as $key => $value) {

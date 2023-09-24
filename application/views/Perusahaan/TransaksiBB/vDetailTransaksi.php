@@ -101,30 +101,48 @@
 										</tr>
 									</tfoot>
 								</table>
-
-
-
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-header">
-							<h2>Upload Bukti Pembayaran</h2>
-						</div>
-						<div class="card body">
-							<?php echo form_open_multipart('Perusahaan/cTransaksiBB/pembayaran/' . $detail_transaksi['transaksi']->id_tran_bb); ?>
-							<input type="file" class="form-control" name="bayar" required>
-							<button type="submit" class="btn btn-success">Upload</button>
-							</form>
+			<?php
+			if ($detail_transaksi['transaksi']->bukti_payment == '0') {
+			?>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="card">
+							<div class="card-header">
+								<h2>Upload Bukti Pembayaran</h2>
+							</div>
+							<div class="card body">
+								<?php echo form_open_multipart('Perusahaan/cTransaksiBB/pembayaran/' . $detail_transaksi['transaksi']->id_tran_bb); ?>
+								<input type="file" class="form-control" name="bayar" required>
+								<button type="submit" class="btn btn-success">Upload</button>
+								</form>
+							</div>
+
 						</div>
 
 					</div>
-
 				</div>
-			</div>
+			<?php
+			} else {
+			?>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="card">
+							<div class="card-header">
+								<h2>Bukti Pembayaran</h2>
+							</div>
+							<div class="card body">
+								<img style="width: 250px;" src="<?= base_url('asset/bukti-pembayaran/' . $detail_transaksi['transaksi']->bukti_payment) ?>">
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php
+			}
+			?>
 		</div>
 		<!-- content-wrapper ends -->
