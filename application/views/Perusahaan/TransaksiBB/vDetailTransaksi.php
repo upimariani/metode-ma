@@ -93,7 +93,15 @@
 									</tbody>
 									<tfoot>
 										<tr>
-											<td></td>
+											<td>
+												<?php
+												if ($detail_transaksi['transaksi']->stat_order == '2') {
+												?>
+													<a href="<?= base_url('Perusahaan/cTransaksiBB/pesanan_diterima/' . $detail_transaksi['transaksi']->id_tran_bb) ?>" class="btn btn-info">Pesanan Diterima</a>
+												<?php
+												}
+												?>
+											</td>
 											<td></td>
 											<td></td>
 											<td><strong>Total</strong></td>

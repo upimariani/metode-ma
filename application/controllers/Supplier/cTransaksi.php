@@ -31,7 +31,7 @@ class cTransaksi extends CI_Controller
 	public function konfirmasi_pesanan($id)
 	{
 		$data = array(
-			'stat_order' => '1'
+			'stat_order' => '2'
 		);
 		$this->db->where('id_tran_bb', $id);
 		$this->db->update('tran_bb', $data);

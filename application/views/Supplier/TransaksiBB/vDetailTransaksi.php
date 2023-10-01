@@ -52,7 +52,7 @@
 										}
 										?>
 										<?php
-										if ($detail_transaksi['transaksi']->stat_order == '0') {
+										if ($detail_transaksi['transaksi']->stat_order == '1') {
 										?>
 											<tr>
 												<td></td>
@@ -72,5 +72,23 @@
 					</div>
 				</div>
 			</div>
+			<?php
+			if ($detail_transaksi['transaksi']->stat_order != '0') {
+			?>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="card">
+							<div class="card-header">
+								<h2>Bukti Pembayaran</h2>
+							</div>
+							<div class="card body">
+								<img style="width: 250px;" src="<?= base_url('asset/bukti-pembayaran/' . $detail_transaksi['transaksi']->bukti_payment) ?>">
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php
+			}
+			?>
 		</div>
 		<!-- content-wrapper ends -->

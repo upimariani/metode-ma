@@ -35,7 +35,9 @@
 <!-- endinject -->
 <!-- Custom js for this page -->
 <script src="<?= base_url('asset/plus-admin/') ?>assets/js/dashboard.js"></script>
-<script src="<?= base_url('asset/') ?>datatables.min.js"></script>
+<link href="<?= base_url('asset/') ?>DataTables/datatables.min.css" rel="stylesheet">
+
+<script src="<?= base_url('asset/') ?>DataTables/datatables.min.js"></script>
 <script src="<?= base_url('asset/chart/js_chart.js') ?>"></script>
 <script>
 	<?php
@@ -220,6 +222,7 @@
 <script>
 	$(document).ready(function() {
 		$('#myTable').DataTable();
+		$('#myTable2').DataTable();
 	});
 </script>
 <!-- End custom js for this page -->

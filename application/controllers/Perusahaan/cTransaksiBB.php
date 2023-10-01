@@ -152,6 +152,16 @@ class cTransaksiBB extends CI_Controller
 			redirect('Perusahaan/cTransaksiBB');
 		}
 	}
+	public function pesanan_diterima($id)
+	{
+		$data = array(
+			'stat_order' => '3'
+		);
+		$this->db->where('id_tran_bb', $id);
+		$this->db->update('tran_bb', $data);
+		$this->session->set_flashdata('success', 'Pesanan Berhasil Diterima!');
+		redirect('Perusahaan/cTransaksiBB');
+	}
 }
 
 /* End of file cDashboard.php */

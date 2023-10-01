@@ -50,34 +50,107 @@
 										<?php
 										$no = 1;
 										foreach ($transaksi as $key => $value) {
-										?>
-											<tr>
-												<td><?= $no++ ?></td>
-												<td><?= $value->nama_user ?></td>
-												<td><?= $value->tgl_tran ?></td>
-												<td>Rp. <?= number_format($value->tot_bayar)  ?></td>
-												<td><?php
-													if ($value->stat_order == '0') {
-													?>
-														<span class="badge badge-danger">Belum Melakukan Pembayaran</span>
-													<?php
-													} else if ($value->stat_order == '1') {
-													?>
-														<span class="badge badge-warning">Menunggu Konfirmasi</span>
-													<?php
-													} else if ($value->stat_order == '2') {
-													?>
-														<span class="badge badge-success">Pesanan Selesai</span>
-													<?php
-													}
-													?>
-												</td>
+											if ($value->stat_order != '3') {
 
-												<td class="text-center"> <a href="<?= base_url('Supplier/cTransaksi/detail_transaksi/' . $value->id_tran_bb) ?>" class="btn btn-warning">
-														<i class="mdi mdi-dots-horizontal"></i> Detail Transaksi
-													</a> </td>
-											</tr>
+										?>
+												<tr>
+													<td><?= $no++ ?></td>
+													<td><?= $value->nama_user ?></td>
+													<td><?= $value->tgl_tran ?></td>
+													<td>Rp. <?= number_format($value->tot_bayar)  ?></td>
+													<td><?php
+														if ($value->stat_order == '0') {
+														?>
+															<span class="badge badge-danger">Belum Melakukan Pembayaran</span>
+														<?php
+														} else if ($value->stat_order == '1') {
+														?>
+															<span class="badge badge-warning">Menunggu Konfirmasi</span>
+														<?php
+														} else if ($value->stat_order == '2') {
+														?>
+															<span class="badge badge-info">Pesanan Dikirim</span>
+														<?php
+														} else if ($value->stat_order == '3') {
+														?>
+															<span class="badge badge-success">Pesanan Selesai</span>
+														<?php
+														}
+														?>
+													</td>
+
+													<td class="text-center"> <a href="<?= base_url('Supplier/cTransaksi/detail_transaksi/' . $value->id_tran_bb) ?>" class="btn btn-warning">
+															<i class="mdi mdi-dots-horizontal"></i> Detail Transaksi
+														</a> </td>
+												</tr>
 										<?php
+											}
+										}
+										?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 grid-margin stretch-card">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Informasi Transaksi Supplier</h4>
+							</p>
+							<div class="table-responsive">
+								<table id="myTable2" class="table table-striped">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>Nama Supplier</th>
+											<th>Tanggal Transaksi</th>
+											<th>Total Bayar</th>
+											<th>Status Pesanan</th>
+											<th class="text-center">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$no = 1;
+										foreach ($transaksi as $key => $value) {
+											if ($value->stat_order == '3') {
+
+										?>
+												<tr>
+													<td><?= $no++ ?></td>
+													<td><?= $value->nama_user ?></td>
+													<td><?= $value->tgl_tran ?></td>
+													<td>Rp. <?= number_format($value->tot_bayar)  ?></td>
+													<td><?php
+														if ($value->stat_order == '0') {
+														?>
+															<span class="badge badge-danger">Belum Melakukan Pembayaran</span>
+														<?php
+														} else if ($value->stat_order == '1') {
+														?>
+															<span class="badge badge-warning">Menunggu Konfirmasi</span>
+														<?php
+														} else if ($value->stat_order == '2') {
+														?>
+															<span class="badge badge-info">Pesanan Dikirim</span>
+														<?php
+														} else if ($value->stat_order == '3') {
+														?>
+															<span class="badge badge-success">Pesanan Selesai</span>
+														<?php
+														}
+														?>
+													</td>
+
+													<td class="text-center"> <a href="<?= base_url('Supplier/cTransaksi/detail_transaksi/' . $value->id_tran_bb) ?>" class="btn btn-warning">
+															<i class="mdi mdi-dots-horizontal"></i> Detail Transaksi
+														</a> </td>
+												</tr>
+										<?php
+											}
 										}
 										?>
 									</tbody>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2023 at 11:42 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Waktu pembuatan: 01 Okt 2023 pada 14.58
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `analisis_ma`
+-- Struktur dari tabel `analisis_ma`
 --
 
 CREATE TABLE `analisis_ma` (
@@ -38,7 +38,7 @@ CREATE TABLE `analisis_ma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `analisis_ma`
+-- Dumping data untuk tabel `analisis_ma`
 --
 
 INSERT INTO `analisis_ma` (`id_analisis`, `id_bb`, `periode`, `tahun`, `total_permintaan`, `forecast`) VALUES
@@ -59,7 +59,7 @@ INSERT INTO `analisis_ma` (`id_analisis`, `id_bb`, `periode`, `tahun`, `total_pe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bahan_baku`
+-- Struktur dari tabel `bahan_baku`
 --
 
 CREATE TABLE `bahan_baku` (
@@ -73,17 +73,17 @@ CREATE TABLE `bahan_baku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bahan_baku`
+-- Dumping data untuk tabel `bahan_baku`
 --
 
 INSERT INTO `bahan_baku` (`id_bb`, `id_user`, `nama_bb`, `keterangan`, `harga`, `stok`, `deskripsi`) VALUES
-(1, 2, 'Kayu Jati', 'meter', '100000', 120, 'Kayu jati Lokal'),
-(2, 2, 'Kayu Mahoni', 'meter', '120000', 230, 'Kayu Mahoni Lokal');
+(1, 2, 'Kayu Jati', 'meter', '100000', 111, 'Kayu jati Lokal'),
+(2, 2, 'Kayu Mahoni', 'meter', '120000', 225, 'Kayu Mahoni Lokal');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bahan_jadi`
+-- Struktur dari tabel `bahan_jadi`
 --
 
 CREATE TABLE `bahan_jadi` (
@@ -95,7 +95,7 @@ CREATE TABLE `bahan_jadi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bahan_jadi`
+-- Dumping data untuk tabel `bahan_jadi`
 --
 
 INSERT INTO `bahan_jadi` (`id_bj`, `nama_bj`, `keterangan`, `stok`, `harga`) VALUES
@@ -105,7 +105,7 @@ INSERT INTO `bahan_jadi` (`id_bj`, `nama_bj`, `keterangan`, `stok`, `harga`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bb_keluar`
+-- Struktur dari tabel `bb_keluar`
 --
 
 CREATE TABLE `bb_keluar` (
@@ -118,7 +118,7 @@ CREATE TABLE `bb_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bb_keluar`
+-- Dumping data untuk tabel `bb_keluar`
 --
 
 INSERT INTO `bb_keluar` (`id_bb_keluar`, `id_detail_bb`, `id_bj`, `qty_keluar`, `qty_bj`, `time`) VALUES
@@ -127,7 +127,7 @@ INSERT INTO `bb_keluar` (`id_bb_keluar`, `id_detail_bb`, `id_bj`, `qty_keluar`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_bb`
+-- Struktur dari tabel `detail_bb`
 --
 
 CREATE TABLE `detail_bb` (
@@ -139,7 +139,7 @@ CREATE TABLE `detail_bb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_bb`
+-- Dumping data untuk tabel `detail_bb`
 --
 
 INSERT INTO `detail_bb` (`id_detail_bb`, `id_tran_bb`, `id_bb`, `jml`, `sisa`) VALUES
@@ -288,12 +288,16 @@ INSERT INTO `detail_bb` (`id_detail_bb`, `id_tran_bb`, `id_bb`, `jml`, `sisa`) V
 (143, 70, 1, 46, 0),
 (144, 71, 1, 21, 0),
 (145, 72, 1, 31, 0),
-(146, 73, 1, 30, 20);
+(146, 73, 1, 30, 20),
+(148, 75, 1, 5, 5),
+(149, 76, 1, 5, 5),
+(150, 77, 2, 5, 5),
+(151, 78, 1, 9, 9);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tran_bb`
+-- Struktur dari tabel `tran_bb`
 --
 
 CREATE TABLE `tran_bb` (
@@ -302,93 +306,97 @@ CREATE TABLE `tran_bb` (
   `tgl_tran` varchar(15) NOT NULL,
   `tot_bayar` varchar(15) NOT NULL,
   `stat_order` int(11) NOT NULL,
-  `bukti_payment` text NOT NULL,
+  `bukti_payment` text DEFAULT '0',
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tran_bb`
+-- Dumping data untuk tabel `tran_bb`
 --
 
 INSERT INTO `tran_bb` (`id_tran_bb`, `id_user`, `tgl_tran`, `tot_bayar`, `stat_order`, `bukti_payment`, `time`) VALUES
-(1, 2, '2023-01-01', '11440000', 2, '0', '2023-09-23 09:34:12'),
-(2, 2, '2023-01-02', '6580000', 2, '0', '2023-09-23 09:34:18'),
-(3, 2, '2023-01-03', '22500000', 2, '0', '2023-09-23 09:34:18'),
-(4, 2, '2023-01-04', '11000000', 2, '0', '2023-09-23 09:34:18'),
-(5, 2, '2023-01-05', '6900000', 2, '0', '2023-09-23 09:34:18'),
-(6, 2, '2023-01-06', '980000', 2, '0', '2023-09-23 09:34:18'),
-(7, 2, '2023-02-01', '5780000', 2, '0', '2023-09-23 09:34:18'),
-(8, 2, '2023-02-02', '13480000', 2, '0', '2023-09-23 09:34:18'),
-(9, 2, '2023-02-03', '5020000', 2, '0', '2023-09-23 09:34:18'),
-(10, 2, '2023-02-04', '8800000', 2, '0', '2023-09-23 09:34:18'),
-(11, 2, '2023-02-05', '7100000', 2, '0', '2023-09-23 09:34:18'),
-(12, 2, '2023-02-06', '2680000', 2, '0', '2023-09-23 09:34:18'),
-(13, 2, '2023-02-07', '3200000', 2, '0', '2023-09-23 09:34:18'),
-(14, 2, '2023-03-01', '18480000', 2, '0', '2023-09-23 09:34:18'),
-(15, 2, '2023-03-02', '8580000', 2, '0', '2023-09-23 09:34:18'),
-(16, 2, '2023-03-03', '42700000', 2, '0', '2023-09-23 09:34:18'),
-(17, 2, '2023-03-04', '19580000', 2, '0', '2023-09-23 09:34:18'),
-(18, 2, '2023-03-05', '21820000', 2, '0', '2023-09-23 09:34:18'),
-(19, 2, '2023-04-06', '32020000', 2, '0', '2023-09-23 09:34:18'),
-(20, 2, '2023-04-07', '28400000', 2, '0', '2023-09-23 09:34:18'),
-(21, 2, '2023-04-08', '19900000', 2, '0', '2023-09-23 09:34:18'),
-(22, 2, '2023-04-09', '8000000', 2, '0', '2023-09-23 09:34:18'),
-(23, 2, '2023-04-10', '7640000', 2, '0', '2023-09-23 09:34:18'),
-(24, 2, '2023-05-11', '18680000', 2, '0', '2023-09-23 09:34:18'),
-(25, 2, '2023-05-12', '12600000', 2, '0', '2023-09-23 09:34:18'),
-(26, 2, '2023-05-13', '5700000', 2, '0', '2023-09-23 09:34:18'),
-(27, 2, '2023-05-14', '8400000', 2, '0', '2023-09-23 09:34:18'),
-(28, 2, '2023-05-15', '11600000', 2, '0', '2023-09-23 09:34:18'),
-(29, 2, '2023-05-16', '1700000', 2, '0', '2023-09-23 09:34:18'),
-(30, 2, '2023-06-01', '36000000', 2, '0', '2023-09-23 09:34:18'),
-(31, 2, '2023-06-02', '34680000', 2, '0', '2023-09-23 09:34:18'),
-(32, 2, '2023-06-03', '12100000', 2, '0', '2023-09-23 09:34:18'),
-(33, 2, '2023-06-04', '23420000', 2, '0', '2023-09-23 09:34:18'),
-(34, 2, '2023-06-05', '18160000', 2, '0', '2023-09-23 09:34:18'),
-(35, 2, '2023-06-06', '11420000', 2, '0', '2023-09-23 09:34:18'),
-(36, 2, '2023-06-07', '10580000', 2, '0', '2023-09-23 09:34:18'),
-(37, 2, '2023-06-08', '2220000', 2, '0', '2023-09-23 09:34:18'),
-(38, 2, '2023-07-01', '14780000', 2, '0', '2023-09-23 09:34:18'),
-(39, 2, '2023-07-02', '9760000', 2, '0', '2023-09-23 09:34:18'),
-(40, 2, '2023-07-03', '13900000', 2, '0', '2023-09-23 09:34:18'),
-(41, 2, '2023-07-04', '8580000', 2, '0', '2023-09-23 09:34:18'),
-(42, 2, '2023-07-05', '10340000', 2, '0', '2023-09-23 09:34:18'),
-(43, 2, '2023-07-06', '7140000', 2, '0', '2023-09-23 09:34:18'),
-(44, 2, '2023-07-07', '2240000', 2, '0', '2023-09-23 09:34:18'),
-(45, 2, '2023-08-01', '28220000', 2, '0', '2023-09-23 09:34:18'),
-(46, 2, '2023-08-02', '10480000', 2, '0', '2023-09-23 09:34:18'),
-(47, 2, '2023-08-03', '23420000', 2, '0', '2023-09-23 09:34:18'),
-(48, 2, '2023-08-04', '14580000', 2, '0', '2023-09-23 09:34:18'),
-(49, 2, '2023-08-05', '9500000', 2, '0', '2023-09-23 09:34:18'),
-(50, 2, '2023-08-06', '15660000', 2, '0', '2023-09-23 09:34:18'),
-(51, 2, '2023-08-07', '5060000', 2, '0', '2023-09-23 09:34:18'),
-(52, 2, '2023-09-01', '12720000', 2, '0', '2023-09-23 09:34:18'),
-(53, 2, '2023-09-02', '24780000', 2, '0', '2023-09-23 09:34:18'),
-(54, 2, '2023-09-03', '9680000', 2, '0', '2023-09-23 09:34:18'),
-(55, 2, '2023-09-04', '8780000', 2, '0', '2023-09-23 09:34:18'),
-(56, 2, '2023-09-05', '10760000', 2, '0', '2023-09-23 09:34:18'),
-(57, 2, '2023-09-06', '2340000', 2, '0', '2023-09-23 09:34:18'),
-(58, 2, '2023-10-07', '32220000', 2, '0', '2023-09-23 09:34:18'),
-(59, 2, '2023-10-08', '10900000', 2, '0', '2023-09-23 09:34:18'),
-(60, 2, '2023-10-09', '18140000', 2, '0', '2023-09-23 09:34:18'),
-(61, 2, '2023-10-10', '17180000', 2, '0', '2023-09-23 09:34:18'),
-(62, 2, '2023-10-11', '14400000', 2, '0', '2023-09-23 09:34:18'),
-(63, 2, '2023-10-12', '7180000', 2, '0', '2023-09-23 09:34:18'),
-(64, 2, '2023-11-01', '42920000', 2, '0', '2023-09-23 09:34:18'),
-(65, 2, '2023-11-02', '33540000', 2, '0', '2023-09-23 09:34:18'),
-(66, 2, '2023-11-03', '22080000', 2, '0', '2023-09-23 09:34:18'),
-(67, 2, '2023-11-04', '6080000', 2, '0', '2023-09-23 09:34:18'),
-(68, 2, '2023-12-01', '22900000', 2, '0', '2023-09-23 09:34:18'),
-(69, 2, '2023-12-02', '22980000', 2, '0', '2023-09-23 09:34:18'),
-(70, 2, '2023-12-03', '9020000', 2, '0', '2023-09-23 09:34:18'),
-(71, 2, '2023-12-04', '21520000', 2, '0', '2023-09-23 09:34:18'),
-(72, 2, '2023-12-05', '8720000', 2, '0', '2023-09-23 09:34:18'),
-(73, 2, '2023-12-06', '4500000', 1, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-09-23 09:34:38');
+(1, 2, '2023-01-01', '11440000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(2, 2, '2023-01-02', '6580000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(3, 2, '2023-01-03', '22500000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(4, 2, '2023-01-04', '11000000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(5, 2, '2023-01-05', '6900000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(6, 2, '2023-01-06', '980000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(7, 2, '2023-02-01', '5780000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(8, 2, '2023-02-02', '13480000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(9, 2, '2023-02-03', '5020000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(10, 2, '2023-02-04', '8800000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(11, 2, '2023-02-05', '7100000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(12, 2, '2023-02-06', '2680000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(13, 2, '2023-02-07', '3200000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(14, 2, '2023-03-01', '18480000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(15, 2, '2023-03-02', '8580000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(16, 2, '2023-03-03', '42700000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(17, 2, '2023-03-04', '19580000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(18, 2, '2023-03-05', '21820000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(19, 2, '2023-04-06', '32020000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(20, 2, '2023-04-07', '28400000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(21, 2, '2023-04-08', '19900000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(22, 2, '2023-04-09', '8000000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(23, 2, '2023-04-10', '7640000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(24, 2, '2023-05-11', '18680000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(25, 2, '2023-05-12', '12600000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(26, 2, '2023-05-13', '5700000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(27, 2, '2023-05-14', '8400000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(28, 2, '2023-05-15', '11600000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(29, 2, '2023-05-16', '1700000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(30, 2, '2023-06-01', '36000000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(31, 2, '2023-06-02', '34680000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(32, 2, '2023-06-03', '12100000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(33, 2, '2023-06-04', '23420000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(34, 2, '2023-06-05', '18160000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(35, 2, '2023-06-06', '11420000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(36, 2, '2023-06-07', '10580000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(37, 2, '2023-06-08', '2220000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(38, 2, '2023-07-01', '14780000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(39, 2, '2023-07-02', '9760000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(40, 2, '2023-07-03', '13900000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(41, 2, '2023-07-04', '8580000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(42, 2, '2023-07-05', '10340000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(43, 2, '2023-07-06', '7140000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(44, 2, '2023-07-07', '2240000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(45, 2, '2023-08-01', '28220000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(46, 2, '2023-08-02', '10480000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(47, 2, '2023-08-03', '23420000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(48, 2, '2023-08-04', '14580000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(49, 2, '2023-08-05', '9500000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(50, 2, '2023-08-06', '15660000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(51, 2, '2023-08-07', '5060000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:43:54'),
+(52, 2, '2023-09-01', '12720000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(53, 2, '2023-09-02', '24780000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(54, 2, '2023-09-03', '9680000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(55, 2, '2023-09-04', '8780000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(56, 2, '2023-09-05', '10760000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(57, 2, '2023-09-06', '2340000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(58, 2, '2023-10-07', '32220000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(59, 2, '2023-10-08', '10900000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(60, 2, '2023-10-09', '18140000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(61, 2, '2023-10-10', '17180000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(62, 2, '2023-10-11', '14400000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(63, 2, '2023-10-12', '7180000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(64, 2, '2023-11-01', '42920000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(65, 2, '2023-11-02', '33540000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(66, 2, '2023-11-03', '22080000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(67, 2, '2023-11-04', '6080000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(68, 2, '2023-12-01', '22900000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(69, 2, '2023-12-02', '22980000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(70, 2, '2023-12-03', '9020000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(71, 2, '2023-12-04', '21520000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(72, 2, '2023-12-05', '8720000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(73, 2, '2023-12-06', '4500000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', '2023-10-01 12:44:22'),
+(75, 2, '2023-09-23', '500000', 3, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-12.jpg', '2023-10-01 12:56:03'),
+(76, 2, '2023-09-23', '500000', 1, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-13.jpg', '2023-10-01 12:46:52'),
+(77, 2, '2023-09-23', '600000', 0, '0', '2023-09-23 09:55:39'),
+(78, 2, '2023-09-23', '900000', 0, '0', '2023-09-23 09:55:31');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -402,7 +410,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `username`, `password`, `level_user`) VALUES
@@ -418,89 +426,89 @@ INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `username`, `pass
 --
 
 --
--- Indexes for table `analisis_ma`
+-- Indeks untuk tabel `analisis_ma`
 --
 ALTER TABLE `analisis_ma`
   ADD PRIMARY KEY (`id_analisis`);
 
 --
--- Indexes for table `bahan_baku`
+-- Indeks untuk tabel `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
   ADD PRIMARY KEY (`id_bb`);
 
 --
--- Indexes for table `bahan_jadi`
+-- Indeks untuk tabel `bahan_jadi`
 --
 ALTER TABLE `bahan_jadi`
   ADD PRIMARY KEY (`id_bj`);
 
 --
--- Indexes for table `bb_keluar`
+-- Indeks untuk tabel `bb_keluar`
 --
 ALTER TABLE `bb_keluar`
   ADD PRIMARY KEY (`id_bb_keluar`);
 
 --
--- Indexes for table `detail_bb`
+-- Indeks untuk tabel `detail_bb`
 --
 ALTER TABLE `detail_bb`
   ADD PRIMARY KEY (`id_detail_bb`);
 
 --
--- Indexes for table `tran_bb`
+-- Indeks untuk tabel `tran_bb`
 --
 ALTER TABLE `tran_bb`
   ADD PRIMARY KEY (`id_tran_bb`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `analisis_ma`
+-- AUTO_INCREMENT untuk tabel `analisis_ma`
 --
 ALTER TABLE `analisis_ma`
   MODIFY `id_analisis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `bahan_baku`
+-- AUTO_INCREMENT untuk tabel `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
   MODIFY `id_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `bahan_jadi`
+-- AUTO_INCREMENT untuk tabel `bahan_jadi`
 --
 ALTER TABLE `bahan_jadi`
   MODIFY `id_bj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `bb_keluar`
+-- AUTO_INCREMENT untuk tabel `bb_keluar`
 --
 ALTER TABLE `bb_keluar`
   MODIFY `id_bb_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `detail_bb`
+-- AUTO_INCREMENT untuk tabel `detail_bb`
 --
 ALTER TABLE `detail_bb`
-  MODIFY `id_detail_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id_detail_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
--- AUTO_INCREMENT for table `tran_bb`
+-- AUTO_INCREMENT untuk tabel `tran_bb`
 --
 ALTER TABLE `tran_bb`
-  MODIFY `id_tran_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_tran_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
