@@ -76,6 +76,15 @@ class cBahanJadi extends CI_Controller
 		$this->session->set_flashdata('success', 'Bahan Jadi Berhasil Dihapus!');
 		redirect('Produksi/cBahanJadi');
 	}
+	public function detail_penjualan($id_bj)
+	{
+		$data = array(
+			'detail_penjualan' => $this->mBahanJadi->detail_penjualan($id_bj)
+		);
+		$this->load->view('Produksi/Layout/head');
+		$this->load->view('Produksi/BahanJadi/vDetailPenjualan', $data);
+		$this->load->view('Produksi/Layout/footer');
+	}
 }
 
 /* End of file cBahanJadi.php */

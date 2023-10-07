@@ -47,6 +47,7 @@
 											<th>Keterangan</th>
 											<th>Harga</th>
 											<th>Sisa Bahan Baku</th>
+											<th>Tanggal Transaksi Terakhir</th>
 											<th>Status</th>
 										</tr>
 									</thead>
@@ -63,6 +64,7 @@
 												<td><?= $value->keterangan ?></td>
 												<td>Rp. <?= number_format($value->harga)  ?></td>
 												<td><?= $value->sisa_qty ?></td>
+												<td><?= $value->tgl_tran ?></td>
 												<td><?php if ($value->sisa_qty <= '10') {
 													?>
 														<span class="badge badge-warning">Stok bahan baku akan segera habis!!</span>
@@ -78,12 +80,28 @@
 													<?php
 													} ?>
 												</td>
+
 											</tr>
 										<?php
 										}
 										?>
 									</tbody>
 								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-9 stretch-card grid-margin">
+					<div class="card">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-body">
+										<canvas id="stok_bb" height="150"></canvas>
+									</div>
+
+								</div>
+
 							</div>
 						</div>
 					</div>

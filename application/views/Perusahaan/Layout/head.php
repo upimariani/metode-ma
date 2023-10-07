@@ -88,6 +88,12 @@
 							</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" href="<?= base_url('Perusahaan/cBahanJadiKeluar') ?>">
+								<i class="mdi mdi-tag menu-icon"></i>
+								<span class="menu-title">Bahan Jadi Keluar</span>
+							</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" href="<?= base_url('Perusahaan/cAnalisis') ?>">
 								<i class="mdi mdi-chart-pie menu-icon"></i>
 								<span class="menu-title">Analisis Peramalan Permintaan</span>

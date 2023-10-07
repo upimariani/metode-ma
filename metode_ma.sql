@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Okt 2023 pada 14.58
+-- Waktu pembuatan: 07 Okt 2023 pada 04.32
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -99,8 +99,8 @@ CREATE TABLE `bahan_jadi` (
 --
 
 INSERT INTO `bahan_jadi` (`id_bj`, `nama_bj`, `keterangan`, `stok`, `harga`) VALUES
-(2, 'Pintu', 'meteran 1 x 0,5 m', 1, '200000'),
-(3, 'Jendela', 'ukuran 0,5 x 0,5', 4, '120000');
+(1, 'Pintu', 'meteran 1 x 0,5 m', 4, '200000'),
+(2, 'Jendela', 'ukuran 0,5 x 0,5', 4, '120000');
 
 -- --------------------------------------------------------
 
@@ -123,6 +123,28 @@ CREATE TABLE `bb_keluar` (
 
 INSERT INTO `bb_keluar` (`id_bb_keluar`, `id_detail_bb`, `id_bj`, `qty_keluar`, `qty_bj`, `time`) VALUES
 (4, 146, 3, 2, 1, '2023-09-23 00:58:08');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bj_keluar`
+--
+
+CREATE TABLE `bj_keluar` (
+  `id_bj_keluar` int(11) NOT NULL,
+  `id_bj` int(11) NOT NULL,
+  `tgl_jual` varchar(15) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `bj_keluar`
+--
+
+INSERT INTO `bj_keluar` (`id_bj_keluar`, `id_bj`, `tgl_jual`, `quantity`, `time`) VALUES
+(1, 1, '2023-10-07', 2, '2023-10-05 13:07:12'),
+(2, 1, '2023-10-07', 1, '2023-10-07 01:50:39');
 
 -- --------------------------------------------------------
 
@@ -450,6 +472,12 @@ ALTER TABLE `bb_keluar`
   ADD PRIMARY KEY (`id_bb_keluar`);
 
 --
+-- Indeks untuk tabel `bj_keluar`
+--
+ALTER TABLE `bj_keluar`
+  ADD PRIMARY KEY (`id_bj_keluar`);
+
+--
 -- Indeks untuk tabel `detail_bb`
 --
 ALTER TABLE `detail_bb`
@@ -494,6 +522,12 @@ ALTER TABLE `bahan_jadi`
 --
 ALTER TABLE `bb_keluar`
   MODIFY `id_bb_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `bj_keluar`
+--
+ALTER TABLE `bj_keluar`
+  MODIFY `id_bj_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_bb`

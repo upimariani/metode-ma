@@ -30,6 +30,15 @@ class mBahanJadi extends CI_Model
 		$this->db->where('id_bj', $id);
 		$this->db->delete('bahan_jadi');
 	}
+
+	public function detail_penjualan($id)
+	{
+		$this->db->select('*');
+		$this->db->from('bj_keluar');
+		$this->db->join('bahan_jadi', 'bj_keluar.id_bj = bahan_jadi.id_bj', 'left');
+		$this->db->where('bahan_jadi.id_bj', $id);
+		return $this->db->get()->result();
+	}
 }
 
 /* End of file mBahanJadi.php */

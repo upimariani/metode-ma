@@ -355,6 +355,20 @@
 		$('#myTable2').DataTable();
 	});
 </script>
+<script>
+	console.log = function() {}
+	$("#bahan_jadi").on('change', function() {
+
+		$(".nama").html($(this).find(':selected').attr('data-nama'));
+		$(".nama").val($(this).find(':selected').attr('data-nama'));
+
+
+		$(".stok").html($(this).find(':selected').attr('data-stok'));
+		$(".stok").val($(this).find(':selected').attr('data-stok'));
+
+
+	});
+</script>
 </body>
 
 </html>
