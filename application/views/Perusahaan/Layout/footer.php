@@ -357,7 +357,7 @@
 </script>
 <script>
 	console.log = function() {}
-	$("#bahan_jadi").on('change', function() {
+	$(".bahan_jadi").on('change', function() {
 
 		$(".nama").html($(this).find(':selected').attr('data-nama'));
 		$(".nama").val($(this).find(':selected').attr('data-nama'));

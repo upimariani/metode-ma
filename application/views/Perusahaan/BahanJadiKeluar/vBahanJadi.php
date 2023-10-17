@@ -91,7 +91,7 @@
 															<div class="modal-body">
 																<div class="form-group">
 																	<label for="exampleInputCity1">Nama Bahan Jadi</label>
-																	<select name="bj" id="bahan_jadi" class="form-control">
+																	<select name="bj" class="bahan_jadi form-control">
 																		<option value="">---Pilih Bahan Jadi---</option>
 																		<?php
 																		foreach ($bj as $key => $item) {
@@ -173,7 +173,7 @@
 						<div class="modal-body">
 							<div class="form-group">
 								<label for="exampleInputCity1">Nama Bahan Jadi</label>
-								<select name="bj" id="bahan_jadi" class="form-control">
+								<select name="bj" class="bahan_jadi form-control">
 									<option value="">---Pilih Bahan Jadi---</option>
 									<?php
 									foreach ($bj as $key => $value) {
